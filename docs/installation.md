@@ -1,6 +1,6 @@
 # Installation
 
-Installing `e_sign` has two parts: the **Frappe app** (server side) and the
+Installing `finstein_e_sign` has two parts: the **Frappe app** (server side) and the
 **bridge agent** (on each signer's workstation).
 
 ## Requirements
@@ -18,7 +18,7 @@ automatically by bench from `pyproject.toml`.
 ```bash
 cd $PATH_TO_YOUR_BENCH
 bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app e_sign
+bench install-app finstein_e_sign
 ```
 
 ### What installation does
@@ -31,7 +31,7 @@ bench install-app e_sign
 ### Verify the install
 
 ```bash
-bench --site $YOUR_SITE list-apps        # e_sign should appear
+bench --site $YOUR_SITE list-apps        # finstein_e_sign should appear
 ```
 
 Then open the Desk and confirm the **DSC Signing** workspace is visible.
@@ -50,11 +50,11 @@ the DSC token. See [Bridge Agent](bridge-agent.md) for details. In short:
 Static assets are served from the app's `public/` folder. If you edit or add assets:
 
 ```bash
-bench build --app e_sign
+bench build --app finstein_e_sign
 ```
 
 !!! note
-    The app vendors `pdf.js` under `e_sign/public/js/vendor/` so the document
+    The app vendors `pdf.js` under `finstein_e_sign/public/js/vendor/` so the document
     signature placement viewer works fully offline. No internet access is required at
     runtime.
 
@@ -62,14 +62,14 @@ bench build --app e_sign
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app --branch develop e_sign        # pulls latest
+bench get-app --branch develop finstein_e_sign        # pulls latest
 bench --site $YOUR_SITE migrate
-bench build --app e_sign
+bench build --app finstein_e_sign
 ```
 
 ## Uninstall
 
 ```bash
-bench --site $YOUR_SITE uninstall-app e_sign
+bench --site $YOUR_SITE uninstall-app finstein_e_sign
 ```
 </content>

@@ -51,8 +51,8 @@ owner to add you, or use a profile you are permitted to sign with.
 
 ### "Could not load the PDF viewer (pdf.js)"
 
-The vendored pdf.js assets are missing. Run `bench build --app e_sign` and confirm
-`e_sign/public/js/vendor/` contains `pdf.min.js` and `pdf.worker.min.js`.
+The vendored pdf.js assets are missing. Run `bench build --app finstein_e_sign` and confirm
+`finstein_e_sign/public/js/vendor/` contains `pdf.min.js` and `pdf.worker.min.js`.
 
 ### The signature box will not move
 

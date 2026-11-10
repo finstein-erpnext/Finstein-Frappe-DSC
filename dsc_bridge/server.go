@@ -68,7 +68,7 @@ func securityMiddleware(next http.Handler, ks *Keystore) http.Handler {
 		// to the agent at pairing time — the browser has no way to obtain it).
 		// Auth model: if a token is supplied, it MUST match. If not, we fall back
 		// to Origin-only check against paired sites — the same intent expressed
-		// in e_sign.js getSiteToken().
+		// in finstein_e_sign.js getSiteToken().
 		token := r.Header.Get("X-DSC-Site-Token")
 		if token != "" {
 			if !ks.ValidateToken(origin, token) {

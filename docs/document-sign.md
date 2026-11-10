@@ -77,7 +77,7 @@ Draft ──▶ Pending ──▶ In Progress ──▶ Signed
 
 | Symptom | Cause / fix |
 |---|---|
-| "Could not load the PDF viewer (pdf.js)" | The vendored pdf.js assets are missing — run `bench build --app e_sign` and confirm `public/js/vendor/` is present |
+| "Could not load the PDF viewer (pdf.js)" | The vendored pdf.js assets are missing — run `bench build --app finstein_e_sign` and confirm `public/js/vendor/` is present |
 | No draggable box appears | No PDF uploaded yet, or the record is already signed |
 | "No signature position has been set" | Drag the box onto the page and save before signing |
 | Placement is locked | A signing request already exists — placement is only editable while **Draft** |

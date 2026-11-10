@@ -1,8 +1,8 @@
 # Requirements
 
-Everything needed for **e_sign** to actually work end-to-end.
+Everything needed for **finstein_e_sign** to actually work end-to-end.
 
-`bench install-app e_sign` only installs the **server (Python) side**. PDF
+`bench install-app finstein_e_sign` only installs the **server (Python) side**. PDF
 signing also needs the **DSC Bridge desktop agent** and the **token driver** on
 the signer's machine. The items marked **Manual** below are NOT installed
 automatically — install them or signing will fail.
@@ -20,12 +20,12 @@ Installed automatically by `bench install-app` from `pyproject.toml`:
 | pyhanko[image-support] | latest | pip (via pyproject.toml) |
 | asn1crypto | latest | pip (via pyproject.toml) |
 
-`e_sign/install.py` (`after_install`) also runs automatically and adds the
+`finstein_e_sign/install.py` (`after_install`) also runs automatically and adds the
 `is_dsc_signed` custom field to the File doctype.
 
 ```bash
-bench get-app e_sign <repo-url>
-bench --site <your-site> install-app e_sign
+bench get-app finstein_e_sign <repo-url>
+bench --site <your-site> install-app finstein_e_sign
 ```
 
 ---
@@ -72,13 +72,13 @@ NEVER be auto-installed — it ships from the token vendor.
 ## 4. Frontend assets — bundled (no action)
 
 No npm / `package.json`. PDF.js (`pdf.min.js`, `pdf.worker.min.js`) is vendored
-in `e_sign/public/js/vendor/` and bundled by `bench build`.
+in `finstein_e_sign/public/js/vendor/` and bundled by `bench build`.
 
 ---
 
 ## Install checklist
 
-- [ ] **Server:** `bench install-app e_sign` (auto: Python deps + custom field)
+- [ ] **Server:** `bench install-app finstein_e_sign` (auto: Python deps + custom field)
 - [ ] **Signer machine:** install + run the DSC Bridge agent
 - [ ] **Signer machine:** install the token's PKCS#11 vendor driver
 - [ ] Plug in the USB token and verify the agent detects it

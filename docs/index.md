@@ -1,6 +1,6 @@
-# Digital Signature (e_sign)
+# Finstein E Sign
 
-**`e_sign`** is a Digital Signature Certificate (DSC) signing platform for Frappe and
+**`finstein_e_sign`** is a Digital Signature Certificate (DSC) signing platform for Frappe and
 ERPNext. It lets users digitally sign PDF documents with a **physical DSC USB token**,
 producing legally recognised, PAdES-compliant signatures.
 

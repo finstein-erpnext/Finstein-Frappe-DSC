@@ -1,5 +1,5 @@
 # Build staging directories and packaged artifacts (intermediate outputs).
-# The distributable installers live in e_sign/public/downloads/ and ARE tracked.
+# The distributable installers live in finstein_e_sign/public/downloads/ and ARE tracked.
 build/deb-stage/
 build/linux-tarball/
 build/windows-zip/

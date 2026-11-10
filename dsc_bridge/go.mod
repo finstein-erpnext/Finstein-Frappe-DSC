@@ -1,4 +1,4 @@
-module github.com/Ragav05/dsc-bridge
+module github.com/finstein-erpnext/Finstein-Frappe-DSC/dsc_bridge
 
 go 1.25.0
 

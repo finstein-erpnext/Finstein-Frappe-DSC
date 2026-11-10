@@ -4,24 +4,24 @@ DSC digital-signing platform for Frappe/ERPNext v15. PAdES PDF signing via a har
 
 ## Repo layout — two independent toolchains
 
-- `e_sign/` — the Frappe app (Python + JS). Module namespace is `e_sign.digital_signature` (doctypes live under `e_sign/digital_signature/doctype/`, not `e_sign/doctype/`).
+- `finstein_e_sign/` — the Frappe app (Python + JS). Module namespace is `finstein_e_sign.digital_signature` (doctypes live under `finstein_e_sign/digital_signature/doctype/`, not `finstein_e_sign/doctype/`).
 - `dsc_bridge/` — a Go desktop agent that talks PKCS#11 to the token over localhost HTTPS. Its stateful files (`go.mod`, Go version) may not match the CI workflow (see below).
 
 The two sides are coupled through the wire protocol only: the bridge serves `https://127.0.0.1:4645` (`/v1/status`, `/v1/certs`, `/v1/pair`, `/v1/sign`), and the browser JS calls it directly — the Frappe server never talks to the token.
 
 ## Frappe app
 
-- **No `package.json` / npm.** Frontend deps (pdf.js) are vendored in `e_sign/public/js/vendor/`. After changing app assets run `bench build --app e_sign` + `bench --site <site> clear-cache` + `bench restart`. No DB migration is needed for code-only changes.
+- **No `package.json` / npm.** Frontend deps (pdf.js) are vendored in `finstein_e_sign/public/js/vendor/`. After changing app assets run `bench build --app finstein_e_sign` + `bench --site <site> clear-cache` + `bench restart`. No DB migration is needed for code-only changes.
 - **Tests are not pytest.** They are scripts run inside the bench site via `bench --site <site> execute`:
-  - `e_sign.setup_demo.run` / `e_sign.setup_demo.teardown`
-  - `e_sign.test_signing_pipeline.run_test` (end-to-end signing with a self-signed cert)
-  - `e_sign.dsc_test.run` (rule-engine smoke test)
+  - `finstein_e_sign.setup_demo.run` / `finstein_e_sign.setup_demo.teardown`
+  - `finstein_e_sign.test_signing_pipeline.run_test` (end-to-end signing with a self-signed cert)
+  - `finstein_e_sign.dsc_test.run` (rule-engine smoke test)
 - **Do not** add "DSC Document Sign" to `doctype_js` in `hooks.py` — its folder-local JS is auto-loaded; listing it twice crashes the form with a "redeclaration of const" SyntaxError.
 - The rules-engine `doc_events` registry in `hooks.py:37-76` is computed at import time from `_DEFAULT_TRACKED_DOCTYPES` + configured `DSC Rule` doctypes. Adding a DSC Rule for a **new** doctype requires a bench restart to take effect.
-- Default agent port is **4645** everywhere in code (`api/signing.py`, `e_sign.js`). REQUIREMENTS.md's `8765` is stale — trust the code.
-- Signing flow entrypoints are whitelisted APIs in `e_sign/api/signing.py` (`initiate`, `finalize`, `get_form_actions`, `retry`, `cancel`, `abort_in_progress`); the pyHanko work is in `e_sign/digital_signature/signing_engine.py` (`prepare_pdf_for_signing`, `finalize_signed_pdf`).
+- Default agent port is **4645** everywhere in code (`api/signing.py`, `finstein_e_sign.js`). REQUIREMENTS.md's `8765` is stale — trust the code.
+- Signing flow entrypoints are whitelisted APIs in `finstein_e_sign/api/signing.py` (`initiate`, `finalize`, `get_form_actions`, `retry`, `cancel`, `abort_in_progress`); the pyHanko work is in `finstein_e_sign/digital_signature/signing_engine.py` (`prepare_pdf_for_signing`, `finalize_signed_pdf`).
 - `hooks.py` overrides two core whitelisted methods for print/email gating — if you touch `download_pdf`/email paths, remember these overrides exist.
-- Built-in CCA India trust store: `e_sign/digital_signature/cca_india_trust_bundle.pem`.
+- Built-in CCA India trust store: `finstein_e_sign/digital_signature/cca_india_trust_bundle.pem`.
 
 ## dsc_bridge (Go)
 
@@ -33,7 +33,7 @@ The two sides are coupled through the wire protocol only: the bridge serves `htt
 
 ## Shipped installers — keep in sync with dsc_bridge
 
-`e_sign/public/downloads/` (and legacy `dsc_bridge/windows-package.zip`) hold prebuilt installers served to end users in-app (`.deb`, `.tar.gz`, Windows zips; all version `1.0.0`). When you change the bridge, rebuild these artifacts and bump the versions there and in `docs/production-rollout.md`, or in-app installs will ship stale binaries.
+`finstein_e_sign/public/downloads/` (and legacy `dsc_bridge/windows-package.zip`) hold prebuilt installers served to end users in-app (`.deb`, `.tar.gz`, Windows zips; all version `1.0.0`). When you change the bridge, rebuild these artifacts and bump the versions there and in `docs/production-rollout.md`, or in-app installs will ship stale binaries.
 
 ## Conventions
 

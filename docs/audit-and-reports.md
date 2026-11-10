@@ -1,6 +1,6 @@
 # Audit & Reports
 
-`e_sign` records every signing action and provides analytics so administrators and
+`finstein_e_sign` records every signing action and provides analytics so administrators and
 auditors can track activity, performance and failures.
 
 ## The audit trail

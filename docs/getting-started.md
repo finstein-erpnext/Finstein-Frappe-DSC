@@ -4,7 +4,7 @@ This walkthrough takes you from a fresh install to your first digital signature.
 
 ## Prerequisites
 
-- The `e_sign` app installed (see [Installation](installation.md)).
+- The `finstein_e_sign` app installed (see [Installation](installation.md)).
 - A DSC USB token plus its driver on the signer's machine.
 - The [bridge agent](bridge-agent.md) installed on the signer's machine.
 

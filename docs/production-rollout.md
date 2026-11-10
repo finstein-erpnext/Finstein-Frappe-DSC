@@ -12,8 +12,8 @@ machine** (a guided one-time install).
    in-app bridge download):
    ```bash
    cd frappe-bench
-   # pull the latest e_sign app, then:
-   bench build --app e_sign
+   # pull the latest finstein_e_sign app, then:
+   bench build --app finstein_e_sign
    bench --site <your-site> clear-cache
    bench restart
    ```
@@ -24,10 +24,10 @@ machine** (a guided one-time install).
    allow on HTTPS. A proper HTTPS domain also removes any port-related issues.
 
 3. **Confirm the bridge installers are served.** They ship inside the app at
-   `e_sign/public/downloads/` and are reachable at:
-   - `https://<your-site>/assets/e_sign/downloads/dsc-bridge-1.0.0-windows.zip`
-   - `https://<your-site>/assets/e_sign/downloads/dsc-bridge_1.0.0_amd64.deb`
-   - `https://<your-site>/assets/e_sign/downloads/dsc-bridge-1.0.0-linux-amd64.tar.gz`
+   `finstein_e_sign/public/downloads/` and are reachable at:
+   - `https://<your-site>/assets/finstein_e_sign/downloads/dsc-bridge-1.0.0-windows.zip`
+   - `https://<your-site>/assets/finstein_e_sign/downloads/dsc-bridge_1.0.0_amd64.deb`
+   - `https://<your-site>/assets/finstein_e_sign/downloads/dsc-bridge-1.0.0-linux-amd64.tar.gz`
 
 That's the whole server side. The port/PIN fixes now apply to **every** user
 automatically — they don't install anything for those.
@@ -90,7 +90,7 @@ never start it by hand.
 
 ## Quick server checklist
 
-- [ ] `bench build --app e_sign` + `bench restart` on the environment
+- [ ] `bench build --app finstein_e_sign` + `bench restart` on the environment
 - [ ] Site served over HTTPS with a valid certificate
 - [ ] Installer URLs above return the files (200, not 404)
 - [ ] A test document signs end-to-end from a real signer machine + token

@@ -1,10 +1,10 @@
-# Digital Signature (e_sign)
+# Finstein E Sign
 
 > DSC digital signing platform for Frappe & ERPNext — sign documents with a hardware
 > Digital Signature Certificate (DSC) token, fully PAdES-compliant, with a rules
 > engine, audit trail and built-in CCA India trust store.
 
-`e_sign` lets users in a Frappe / ERPNext site digitally sign PDF documents using a
+`finstein_e_sign` lets users in a Frappe / ERPNext site digitally sign PDF documents using a
 **physical DSC USB token** (PKCS#11 crypto token). The token's private key never
 leaves the device — a small local **bridge agent** performs the cryptographic
 signing, while the Frappe server builds a standards-compliant PAdES signature
@@ -59,13 +59,13 @@ do.
 ```
 ┌──────────┐   HTTPS    ┌───────────────┐   localhost   ┌──────────────┐
 │ Browser  │──────────▶│ Frappe server │              │ Bridge agent │
-│ (Desk)   │◀──────────│  (e_sign app) │              │ (DSC token)  │
+│ (Desk)   │◀──────────│  (finstein_e_sign app) │              │ (DSC token)  │
 └────┬─────┘            └───────────────┘              └──────┬───────┘
      │                                                        │
      └───────────── localhost HTTPS (127.0.0.1:<port>) ───────┘
 ```
 
-- **`e_sign/`** — the Frappe app (Python + JS): doctypes, signing engine, rules
+- **`finstein_e_sign/`** — the Frappe app (Python + JS): doctypes, signing engine, rules
   engine, APIs, reports.
 - **`dsc_bridge/`** — the desktop bridge agent (Go), talks PKCS#11 to the DSC token
   and exposes a localhost HTTPS endpoint. Builds for Windows and macOS.
@@ -147,7 +147,7 @@ mkdocs serve     # preview locally in your browser
 This app uses `pre-commit` for formatting and linting:
 
 ```bash
-cd apps/e_sign
+cd apps/finstein_e_sign
 pre-commit install
 ```
 

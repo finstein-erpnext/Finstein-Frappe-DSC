@@ -175,7 +175,7 @@ type pairingResult struct {
 // We marshal the request body via encoding/json (not fmt.Sprintf) so that
 // pairing codes containing JSON-special characters can't break out of the body.
 func validatePairingCode(siteURL, code, agentFP string) (*pairingResult, error) {
-	url := fmt.Sprintf("%s/api/method/e_sign.api.agent.validate_pairing_code", siteURL)
+	url := fmt.Sprintf("%s/api/method/finstein_e_sign.api.agent.validate_pairing_code", siteURL)
 
 	reqBody, err := json.Marshal(map[string]string{
 		"pairing_code":      code,

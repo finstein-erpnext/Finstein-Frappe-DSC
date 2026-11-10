@@ -1,6 +1,6 @@
 {
   "product": "DSC Bridge",
-  "company": "E-Sign",
+  "company": "Finstein",
   "license": "LICENSE",
   "upgrade-code": "f8c5a3e1-7b2d-4e9a-b6c8-3d1f5a2e7b9c",
   "files": {
@@ -55,8 +55,8 @@
   "choco": {
     "description": "Desktop agent for DSC digital signing via USB tokens",
     "title": "DSC Bridge",
-    "authors": "E-Sign Team",
-    "project-url": "https://github.com/Ragav05/dsc-bridge",
+    "authors": "Finstein",
+    "project-url": "https://github.com/finstein-erpnext/Finstein-Frappe-DSC",
     "tags": "dsc digital-signature pkcs11 usb-token",
     "icon-url": ""
   }

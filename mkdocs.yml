@@ -1,4 +1,4 @@
-# MkDocs configuration for the e_sign documentation site.
+# MkDocs configuration for the finstein_e_sign documentation site.
 # This file is documentation tooling only — Frappe ignores it and the app's
 # behaviour is unaffected.
 #
@@ -8,7 +8,7 @@
 # Build a static site:
 #   mkdocs build      # outputs to ./site
 
-site_name: Digital Signature (e_sign)
+site_name: Finstein E Sign
 site_description: DSC digital signing platform for Frappe & ERPNext
 docs_dir: docs
 
