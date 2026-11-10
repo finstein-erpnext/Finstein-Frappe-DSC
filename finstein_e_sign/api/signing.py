@@ -69,9 +69,9 @@ def initiate(doctype, docname, cert_der_b64, signer_lat=None, signer_lng=None, s
 	Returns:
 		dict: {session_id, hash_to_sign, hash_algorithm, expected_cert_fingerprint, visual_metadata}
 	"""
-	from finstein_e_sign.digital_signature.audit import log_event
-	from finstein_e_sign.digital_signature.geocoding import reverse_geocode
-	from finstein_e_sign.digital_signature.signing_engine import prepare_pdf_for_signing
+	from finstein_e_sign.finstein_e_sign.audit import log_event
+	from finstein_e_sign.finstein_e_sign.geocoding import reverse_geocode
+	from finstein_e_sign.finstein_e_sign.signing_engine import prepare_pdf_for_signing
 
 	# Find a pending signing request for this document
 	signing_request = frappe.db.get_value(
@@ -279,7 +279,7 @@ def initiate(doctype, docname, cert_der_b64, signer_lat=None, signer_lng=None, s
 	import secrets as _secrets
 	import time as _time
 
-	from finstein_e_sign.digital_signature.doctype.dsc_settings.dsc_settings import (
+	from finstein_e_sign.finstein_e_sign.doctype.dsc_settings.dsc_settings import (
 		get_or_create_hmac_secret,
 	)
 
@@ -334,8 +334,8 @@ def finalize(session_id, signature_bytes_b64, cert_der_b64, cert_chain_der_b64=N
 	"""
 	import json
 
-	from finstein_e_sign.digital_signature.audit import log_event
-	from finstein_e_sign.digital_signature.signing_engine import (
+	from finstein_e_sign.finstein_e_sign.audit import log_event
+	from finstein_e_sign.finstein_e_sign.signing_engine import (
 		finalize_signed_pdf,
 		get_session_info,
 		save_signed_pdf,
@@ -624,7 +624,7 @@ def get_form_actions(doctype, docname):
 @frappe.whitelist()
 def retry(signing_request):
 	"""Reset a Failed signing request back to Pending for retry."""
-	from finstein_e_sign.digital_signature.audit import log_event
+	from finstein_e_sign.finstein_e_sign.audit import log_event
 
 	doc = frappe.get_doc("DSC Signing Request", signing_request)
 
@@ -648,7 +648,7 @@ def retry(signing_request):
 @frappe.whitelist()
 def cancel(signing_request, reason=""):
 	"""Cancel a pending signing request."""
-	from finstein_e_sign.digital_signature.audit import log_event
+	from finstein_e_sign.finstein_e_sign.audit import log_event
 
 	doc = frappe.get_doc("DSC Signing Request", signing_request)
 
@@ -684,7 +684,7 @@ def abort_in_progress(signing_request, reason=""):
 	crashed), the request is stuck and the user can't retry. Call this from the
 	JS catch handler to free it.
 	"""
-	from finstein_e_sign.digital_signature.audit import log_event
+	from finstein_e_sign.finstein_e_sign.audit import log_event
 
 	doc = frappe.get_doc("DSC Signing Request", signing_request)
 

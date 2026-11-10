@@ -165,7 +165,7 @@ def test_geocode():
 	Useful for verifying outbound internet + Nominatim policy compliance
 	without needing a USB token or the full signing flow.
 	"""
-	from finstein_e_sign.digital_signature.geocoding import reverse_geocode
+	from finstein_e_sign.finstein_e_sign.geocoding import reverse_geocode
 
 	# Anna Salai, Chennai — a well-known landmark for predictable output.
 	lat, lng = 13.0604, 80.2496

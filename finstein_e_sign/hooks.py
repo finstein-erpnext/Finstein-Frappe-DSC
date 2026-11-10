@@ -17,8 +17,8 @@ app_include_css = "/assets/finstein_e_sign/css/finstein_e_sign.css"
 # DocType-specific JS — adds a "Generate Pairing Code" button on the
 # DSC Agent Registration form, plus visual placement preview on the template.
 doctype_js = {
-	"DSC Agent Registration": "digital_signature/doctype/dsc_agent_registration/dsc_agent_registration.js",
-	"DSC Signature Template": "digital_signature/doctype/dsc_signature_template/dsc_signature_template.js",
+	"DSC Agent Registration": "finstein_e_sign/doctype/dsc_agent_registration/dsc_agent_registration.js",
+	"DSC Signature Template": "finstein_e_sign/doctype/dsc_signature_template/dsc_signature_template.js",
 	# NOTE: do NOT add "DSC Document Sign" here — a JS file inside the doctype's
 	# own folder (dsc_document_sign.js) is auto-loaded as its client script.
 	# Listing it in doctype_js too would load it twice and crash the form with
@@ -68,9 +68,9 @@ def _get_tracked_doctypes():
 
 
 _RULE_ENGINE_EVENTS = {
-	"on_submit": "finstein_e_sign.digital_signature.rule_engine.evaluate_on_submit",
-	"on_update_after_submit": "finstein_e_sign.digital_signature.rule_engine.evaluate_on_update",
-	"on_change": "finstein_e_sign.digital_signature.rule_engine.evaluate_on_change",
+	"on_submit": "finstein_e_sign.finstein_e_sign.rule_engine.evaluate_on_submit",
+	"on_update_after_submit": "finstein_e_sign.finstein_e_sign.rule_engine.evaluate_on_update",
+	"on_change": "finstein_e_sign.finstein_e_sign.rule_engine.evaluate_on_change",
 }
 
 doc_events = {dt: dict(_RULE_ENGINE_EVENTS) for dt in _get_tracked_doctypes()}
@@ -78,7 +78,7 @@ doc_events = {dt: dict(_RULE_ENGINE_EVENTS) for dt in _get_tracked_doctypes()}
 # File deletion guard (PRD §12.6) — refuse deletion of DSC-signed PDFs by
 # non-administrators.
 doc_events["File"] = {
-	"before_delete": "finstein_e_sign.digital_signature.file_protection.before_delete",
+	"before_delete": "finstein_e_sign.finstein_e_sign.file_protection.before_delete",
 }
 
 # Override whitelisted methods
@@ -86,30 +86,30 @@ doc_events["File"] = {
 # Intercept PDF download to enforce print gating (block prints of unsigned docs)
 # Intercept email sending to enforce email gating (PRD §12.4)
 override_whitelisted_methods = {
-	"frappe.utils.print_format.download_pdf": "finstein_e_sign.digital_signature.print_gate.download_pdf",
-	"frappe.core.doctype.communication.email.make": "finstein_e_sign.digital_signature.email_gate.make",
+	"frappe.utils.print_format.download_pdf": "finstein_e_sign.finstein_e_sign.print_gate.download_pdf",
+	"frappe.core.doctype.communication.email.make": "finstein_e_sign.finstein_e_sign.email_gate.make",
 }
 
 # Permission hooks
 # ------------------
 has_permission = {
-	"DSC Signing Request": "finstein_e_sign.digital_signature.permissions.request_has_permission",
-	"DSC Profile": "finstein_e_sign.digital_signature.permissions.profile_has_permission",
+	"DSC Signing Request": "finstein_e_sign.finstein_e_sign.permissions.request_has_permission",
+	"DSC Profile": "finstein_e_sign.finstein_e_sign.permissions.profile_has_permission",
 }
 
 permission_query_conditions = {
-	"DSC Signing Request": "finstein_e_sign.digital_signature.permissions.request_query_conditions",
+	"DSC Signing Request": "finstein_e_sign.finstein_e_sign.permissions.request_query_conditions",
 }
 
 # Scheduled Tasks
 # ------------------
 scheduler_events = {
 	"daily": [
-		"finstein_e_sign.digital_signature.cert_expiry.notify_upcoming_expiries",
-		"finstein_e_sign.digital_signature.retention.purge_old_requests",
+		"finstein_e_sign.finstein_e_sign.cert_expiry.notify_upcoming_expiries",
+		"finstein_e_sign.finstein_e_sign.retention.purge_old_requests",
 	],
 	"hourly": [
-		"finstein_e_sign.digital_signature.cleanup.expire_stale_pending_requests",
+		"finstein_e_sign.finstein_e_sign.cleanup.expire_stale_pending_requests",
 	],
 }
 
@@ -140,7 +140,7 @@ after_install = "finstein_e_sign.install.after_install"
 #   {{ dsc_signature_anchor(width=220, height=90) }}
 jinja = {
 	"methods": [
-		"finstein_e_sign.digital_signature.signature_anchor.dsc_signature_anchor",
+		"finstein_e_sign.finstein_e_sign.signature_anchor.dsc_signature_anchor",
 	],
 }
 

@@ -122,7 +122,7 @@ def validate_pairing_code(pairing_code, agent_fingerprint, os_platform=None, age
 	# Provide the server-side HMAC secret to the agent so it can verify HMAC
 	# tags on subsequent /v1/sign requests (PRD §13.4 / §17.1). The plaintext
 	# is delivered exactly once at pair time.
-	from finstein_e_sign.digital_signature.doctype.dsc_settings.dsc_settings import (
+	from finstein_e_sign.finstein_e_sign.doctype.dsc_settings.dsc_settings import (
 		get_or_create_hmac_secret,
 	)
 	hmac_secret = get_or_create_hmac_secret()

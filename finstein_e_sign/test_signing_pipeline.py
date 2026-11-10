@@ -267,7 +267,7 @@ def run_test():
 		print(f"   Updated request:   {signing_request}")
 
 	# Log audit events
-	from finstein_e_sign.digital_signature.audit import log_event
+	from finstein_e_sign.finstein_e_sign.audit import log_event
 
 	log_event(signing_request, "Hash Computed", {"algorithm": "sha256"})
 	log_event(signing_request, "Signature Returned", {"cert_cn": "RAJESH KUMAR"})

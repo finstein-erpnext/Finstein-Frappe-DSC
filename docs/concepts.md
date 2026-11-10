@@ -91,11 +91,11 @@ Computed*, *Agent Called*, *Request Signed*, *PDF Verified*, *Request Failed*. S
 | Module | Responsibility |
 |---|---|
 | `api/signing.py` | Whitelisted endpoints: `initiate`, `finalize`, `retry`, `cancel`, status |
-| `digital_signature/signing_engine.py` | Builds the PAdES PDF, computes the hash, verifies signatures |
-| `digital_signature/rule_engine.py` | Evaluates DSC Rules on document events |
-| `digital_signature/audit.py` | Writes DSC Audit Events |
-| `digital_signature/print_gate.py` / `email_gate.py` | Block printing/emailing of unsigned documents |
-| `digital_signature/permissions.py` | Role-based access for requests and profiles |
+| `finstein_e_sign/signing_engine.py` | Builds the PAdES PDF, computes the hash, verifies signatures |
+| `finstein_e_sign/rule_engine.py` | Evaluates DSC Rules on document events |
+| `finstein_e_sign/audit.py` | Writes DSC Audit Events |
+| `finstein_e_sign/print_gate.py` / `email_gate.py` | Block printing/emailing of unsigned documents |
+| `finstein_e_sign/permissions.py` | Role-based access for requests and profiles |
 
 ## How a signature is produced (PAdES)
 

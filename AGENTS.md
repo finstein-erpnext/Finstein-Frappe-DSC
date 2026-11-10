@@ -4,7 +4,7 @@ DSC digital-signing platform for Frappe/ERPNext v15. PAdES PDF signing via a har
 
 ## Repo layout — two independent toolchains
 
-- `finstein_e_sign/` — the Frappe app (Python + JS). Module namespace is `finstein_e_sign.digital_signature` (doctypes live under `finstein_e_sign/digital_signature/doctype/`, not `finstein_e_sign/doctype/`).
+- `finstein_e_sign/` — the Frappe app (Python + JS). Module namespace is `finstein_e_sign.finstein_e_sign` (doctypes live under `finstein_e_sign/finstein_e_sign/doctype/`, not `finstein_e_sign/doctype/`).
 - `dsc_bridge/` — a Go desktop agent that talks PKCS#11 to the token over localhost HTTPS. Its stateful files (`go.mod`, Go version) may not match the CI workflow (see below).
 
 The two sides are coupled through the wire protocol only: the bridge serves `https://127.0.0.1:4645` (`/v1/status`, `/v1/certs`, `/v1/pair`, `/v1/sign`), and the browser JS calls it directly — the Frappe server never talks to the token.
@@ -19,9 +19,9 @@ The two sides are coupled through the wire protocol only: the bridge serves `htt
 - **Do not** add "DSC Document Sign" to `doctype_js` in `hooks.py` — its folder-local JS is auto-loaded; listing it twice crashes the form with a "redeclaration of const" SyntaxError.
 - The rules-engine `doc_events` registry in `hooks.py:37-76` is computed at import time from `_DEFAULT_TRACKED_DOCTYPES` + configured `DSC Rule` doctypes. Adding a DSC Rule for a **new** doctype requires a bench restart to take effect.
 - Default agent port is **4645** everywhere in code (`api/signing.py`, `finstein_e_sign.js`). REQUIREMENTS.md's `8765` is stale — trust the code.
-- Signing flow entrypoints are whitelisted APIs in `finstein_e_sign/api/signing.py` (`initiate`, `finalize`, `get_form_actions`, `retry`, `cancel`, `abort_in_progress`); the pyHanko work is in `finstein_e_sign/digital_signature/signing_engine.py` (`prepare_pdf_for_signing`, `finalize_signed_pdf`).
+- Signing flow entrypoints are whitelisted APIs in `finstein_e_sign/api/signing.py` (`initiate`, `finalize`, `get_form_actions`, `retry`, `cancel`, `abort_in_progress`); the pyHanko work is in `finstein_e_sign/finstein_e_sign/signing_engine.py` (`prepare_pdf_for_signing`, `finalize_signed_pdf`).
 - `hooks.py` overrides two core whitelisted methods for print/email gating — if you touch `download_pdf`/email paths, remember these overrides exist.
-- Built-in CCA India trust store: `finstein_e_sign/digital_signature/cca_india_trust_bundle.pem`.
+- Built-in CCA India trust store: `finstein_e_sign/finstein_e_sign/cca_india_trust_bundle.pem`.
 
 ## dsc_bridge (Go)
 

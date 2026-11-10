@@ -27,7 +27,7 @@ Audit events are intended to be immutable evidence — do not edit or delete the
 
 ## Reports
 
-The app ships three reports under the **Digital signature** module:
+The app ships three reports under the **Finstein E Sign** module:
 
 ### DSC Sign Volume
 
