@@ -2,7 +2,7 @@ app_name = "finstein_e_sign"
 app_title = "Finstein E Sign"
 app_publisher = "Finstein"
 app_description = "DSC digital signing platform for Frappe & ERPNext"
-app_email = "erpnext.finstein.ai"
+app_email = "support@erpnext.finstein.ai"
 app_license = "GPL-3.0"
 
 # Required Apps
