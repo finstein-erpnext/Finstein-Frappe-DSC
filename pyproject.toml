@@ -1,7 +1,7 @@
 [project]
 name = "finstein_e_sign"
 authors = [
-    { name = "Finstein", email = "support@erpnext.finstein.ai"}
+    { name = "Finstein", email = "erpnext@finstein.ai"}
 ]
 description = "DSC digital signing platform for Frappe & ERPNext"
 requires-python = ">=3.10"
